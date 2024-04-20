@@ -1,6 +1,9 @@
 # Programmer: Connor Fricke (fricke.59@osu.edu)
 # File: main.py
 # Latest Revision: 19-April-2024 --> Created
+#
+# KNN Machine Learning algorithm for MNIST handwritten digit
+# image classification. CSE 5052 Final Project
 
 # *** MODULES ***
 from math import sqrt
@@ -15,7 +18,7 @@ print(f"We have {y.size} images available.")
 # display first 3 images for visualization
 for i in range(3):
     showImage(i, x)
-    print(f"Image {i} is labeled as {getClassification(i, y)}")
+    print("Image {} is labeled as {}".format(i, getClassification(i, y)))
 
 # *** EXAMPLE IMAGES AND DISTANCES ***
 image0 = getImage(0, x)
@@ -28,7 +31,7 @@ print("Image 2 [4] and Image 0 [4]:", distanceBetweenImages(image2, image0))
 
 # *** KNN ALGORITHM ***
 classificationAccuracy = 0  # reflects the accuracy of the algorithm
-N = 41                      # check this many test images (1000 to check all)
+N = 15                      # check this many test images (1000 to check all)
 LTD = 2000                  # length of our training data
 incorrectIndices = []       # indices of images that were incorrectly classified
 
@@ -71,8 +74,6 @@ for i in range(N):
 # results
 print(classificationAccuracy / N)
 print("Incorrect Classifications found at:", incorrectIndices)
-for index in incorrectIndices:
-    showImage(index, x)
 
 
 
