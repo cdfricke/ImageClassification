@@ -1,6 +1,6 @@
 # Programmer: Connor Fricke (fricke.59@osu.edu)
 # File: functions.py
-# Latest Revision: 19-April-2024 --> Created for CSE 5052 Final Project
+# Latest Revision: 19-June-2024
 
 # *** MODULES ***
 import scipy.io
@@ -9,7 +9,7 @@ from matplotlib import pyplot as plt
 
 # *** FUNCTIONS ***
 
-def loadDataFrom(matFileName):
+def loadDataFrom(matFileName: str):
     """
     Loads data from provided .mat file into numpy arrays, then
     returns a reference to those arrays. First return value
@@ -22,7 +22,7 @@ def loadDataFrom(matFileName):
     y[y==-1] = 0
     return x, y
 
-def getImage(imgIndex, imgArray):
+def getImage(imgIndex: int, imgArray):
     """
     Returns image at location imgIndex within imgArray.
     Image is a 1D NumPy array of length 784
@@ -63,3 +63,27 @@ def distanceBetweenImages(image1, image2):
 
     distance /= image1.size # normalize
     return distance
+
+def MatToCSV(matFileName:str, outFileImg: str, outFileClass: str, separator: str, mode: str):
+    x, y = loadDataFrom(matFileName)
+
+    print(f"Exporting {y.size} images to CSV.")
+    imagesFile = open(outFileImg, mode, encoding="utf-8")
+    classificationsFile = open(outFileClass, mode, encoding="utf-8")
+
+    for i in range(y.size):
+        img = getImage(i, x)
+        for value in img:
+            imagesFile.write(str(value) + " ")
+        imagesFile.write("\n")
+    
+    for i in range(y.size):
+        classification = getClassification(i, y)
+        classificationsFile.write(str(classification) + "\n")
+
+
+
+    
+
+
+    

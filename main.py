@@ -11,6 +11,8 @@ from functions import *
 
 # *** MAIN ***
 
+RUN_KNN = False
+
 # X IS THE IMAGE VECTOR, Y IS THE CLASSIFICATION VECTOR
 x, y = loadDataFrom('mnist_49_3000.mat')
 print(f"We have {y.size} images available.")
@@ -28,6 +30,11 @@ print("Example Distances:")
 print("Image 0 [4] and Image 1 [9]:", distanceBetweenImages(image0, image1))
 print("Image 1 [9] and Image 2 [4]:", distanceBetweenImages(image1, image2))
 print("Image 2 [4] and Image 0 [4]:", distanceBetweenImages(image2, image0))
+
+MatToCSV("mnist_49_3000.mat", "images.csv", "classifications.csv", separator=" ", mode="w")
+
+if (not RUN_KNN):
+    exit()
 
 # *** KNN ALGORITHM ***
 classificationAccuracy = 0  # reflects the accuracy of the algorithm
